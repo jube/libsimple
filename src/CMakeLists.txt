@@ -4,7 +4,7 @@ project(LIBSIMPLE CXX)
 
 option(WITH_TEST "Build with tests." ON)
 
-# include(CPackConfig.cmake)
+include(CPackConfig.cmake)
 
 add_definitions(-Wall -g -O2)
 
