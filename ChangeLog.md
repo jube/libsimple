@@ -1,0 +1,9 @@
+# ChangeLog for `libsimple`
+
+## `libtmx` 0.1
+
+### 0.1.0 (16 Jan 2013)
+
+- Initial release with
+  - `simple::log`
+  - `simple::matrix`
