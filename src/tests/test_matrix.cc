@@ -138,6 +138,30 @@ TEST(MatrixTest, CopyOperator) {
   EXPECT_EQ(mat(1, 2), 5);
 }
 
+TEST(MatrixTest, CopyOperatorWithSameMatrix) {
+  simple::matrix<short> mat(2, 3);
+  mat(0, 0) = 0;
+  mat(0, 1) = 1;
+  mat(0, 2) = 2;
+  mat(1, 0) = 3;
+  mat(1, 1) = 4;
+  mat(1, 2) = 5;
+
+  mat = mat;
+
+  // check the original matrix is still here
+  EXPECT_FALSE(mat.empty());
+  EXPECT_EQ(mat.rows(), 2);
+  EXPECT_EQ(mat.cols(), 3);
+  EXPECT_EQ(mat(0, 0), 0);
+  EXPECT_EQ(mat(0, 1), 1);
+  EXPECT_EQ(mat(0, 2), 2);
+  EXPECT_EQ(mat(1, 0), 3);
+  EXPECT_EQ(mat(1, 1), 4);
+  EXPECT_EQ(mat(1, 2), 5);
+}
+
+
 TEST(MatrixTest, MoveOperator) {
   simple::matrix<short> mat(2, 3);
   mat(0, 0) = 0;
@@ -166,6 +190,29 @@ TEST(MatrixTest, MoveOperator) {
   ASSERT_TRUE(mat.empty());
   EXPECT_EQ(mat.rows(), 0);
   EXPECT_EQ(mat.cols(), 0);
+}
+
+TEST(MatrixTest, MoveOperatorWithSameMatrix) {
+  simple::matrix<short> mat(2, 3);
+  mat(0, 0) = 0;
+  mat(0, 1) = 1;
+  mat(0, 2) = 2;
+  mat(1, 0) = 3;
+  mat(1, 1) = 4;
+  mat(1, 2) = 5;
+
+  mat = std::move(mat);
+
+  // check the original matrix is still here
+  EXPECT_FALSE(mat.empty());
+  EXPECT_EQ(mat.rows(), 2);
+  EXPECT_EQ(mat.cols(), 3);
+  EXPECT_EQ(mat(0, 0), 0);
+  EXPECT_EQ(mat(0, 1), 1);
+  EXPECT_EQ(mat(0, 2), 2);
+  EXPECT_EQ(mat(1, 0), 3);
+  EXPECT_EQ(mat(1, 1), 4);
+  EXPECT_EQ(mat(1, 2), 5);
 }
 
 TEST(MatrixTest, At) {
