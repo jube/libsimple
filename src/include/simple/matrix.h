@@ -82,6 +82,10 @@ namespace simple {
     }
 
     matrix& operator=(const matrix& other) {
+      if (this == &other) {
+        return *this;
+      }
+
       clear();
       m_allocator = other.m_allocator;
       m_rows = other.m_rows;
@@ -97,6 +101,10 @@ namespace simple {
     }
 
     matrix& operator=(matrix&& other) {
+      if (this == &other) {
+        return *this;
+      }
+
       clear();
       m_allocator = std::move(other.m_allocator);
       m_rows = other.m_rows;
